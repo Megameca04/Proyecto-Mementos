@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bssq6mfu78uxj"]
+
+[ext_resource type="Texture2D" uid="uid://dtmjhsc3v6jrr" path="res://Recursos/FogataText.tres" id="1_jwy6x"]
+[ext_resource type="Script" uid="uid://byunng67qgpky" path="res://Scripts/Luz.gd" id="2_hev2j"]
+
+[node name="LuzAntorcha" type="PointLight2D"]
+color = Color(0.94902, 0.588235, 0.0509804, 1)
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = ExtResource("1_jwy6x")
+script = ExtResource("2_hev2j")
+size = null
+light_mode = null
+life_time = null
