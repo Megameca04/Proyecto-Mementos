@@ -156,13 +156,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_41yb0"]
 radius = 11.0454
 
-[node name="Jugador" type="CharacterBody2D" groups=["Jugador"]]
+[node name="Jugador" type="CharacterBody2D" node_paths=PackedStringArray("Ligth") groups=["Jugador"]]
 y_sort_enabled = true
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_05hpj")
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_ix2uj")
+Ligth = NodePath("Luz")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -172,9 +173,9 @@ animation = &"Idle"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_41yb0")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Luz" parent="." instance=ExtResource("3_ilitn")]
+light_mode = 1
+
+[connection signal="lifetime_ended" from="Luz" to="." method="restart"]

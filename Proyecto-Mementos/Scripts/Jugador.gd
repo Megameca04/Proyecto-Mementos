@@ -1,6 +1,13 @@
+class_name Jugador
 extends CharacterBody2D
 
+signal memento_obtained(memento : Variables.ListaMementos)
+
 @export var speed : float = 300.0
+@export var Ligth : Luz
+
+@onready var lifetime_ended_signal : Signal = Ligth.lifetime_ended
+@onready var initial_life_time : int  = Ligth.life_time
 
 var direction : Vector2
 
@@ -32,3 +39,18 @@ func _physics_process(_delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, speed/2)
 	
 	move_and_slide()
+
+func heal_player(t : int):
+	if t != 0:
+		Ligth.alive_time -= t
+
+func obtain_memento(m : Variables.ListaMementos):
+	
+	restart()
+	Ligth.life_time += 5
+	
+	memento_obtained.emit(m)
+
+func restart():
+	Ligth.alive_time = 0
+	Ligth.life_time = initial_life_time

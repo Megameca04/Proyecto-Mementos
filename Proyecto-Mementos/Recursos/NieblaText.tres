@@ -1,0 +1,11 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://bntrkomolwky2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_htlm0"]
+frequency = 0.0075
+
+[resource]
+width = 1152
+height = 648
+seamless = true
+seamless_blend_skirt = 0.75
+noise = SubResource("FastNoiseLite_htlm0")

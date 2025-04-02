@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://duytrkm6i0fok"]
+
+[ext_resource type="Script" uid="uid://b15u2usb01hyn" path="res://Scripts/Dialogos.gd" id="1_d38wq"]
+[ext_resource type="FontFile" uid="uid://cq2pbvu813ftv" path="res://Recursos/Pixellari.ttf" id="1_fbqi8"]
+
+[sub_resource type="Gradient" id="Gradient_d38wq"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.157895, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_35uti"]
+gradient = SubResource("Gradient_d38wq")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_35uti"]
+resource_name = "Mostrar"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextoPrincipal:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_miras"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextoPrincipal:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ueif"]
+_data = {
+&"Mostrar": SubResource("Animation_35uti"),
+&"RESET": SubResource("Animation_miras")
+}
+
+[node name="Dialoge" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d38wq")
+metadata/_edit_vertical_guides_ = [240.0, 1152.0, 912.0, 576.0]
+metadata/_edit_horizontal_guides_ = [520.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_35uti")
+
+[node name="TextoPrincipal" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.208
+anchor_top = 0.753
+anchor_right = 0.792
+anchor_bottom = 0.852
+offset_left = 0.384003
+offset_top = 0.0559998
+offset_right = -0.384033
+offset_bottom = -0.0960083
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_fbqi8")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "La vieja mecedora tiene que estar por algun lado"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3ueif")
+}
+
+[node name="Saltar" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 608.0
+offset_right = 1120.0
+offset_bottom = 640.0
+theme_override_fonts/normal_font = ExtResource("1_fbqi8")
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=1.0 connected=1]Saltar [Espacio]"
+horizontal_alignment = 1
+vertical_alignment = 1

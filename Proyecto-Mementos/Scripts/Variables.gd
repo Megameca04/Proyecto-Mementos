@@ -1,10 +1,8 @@
 extends Node
 
-enum Inventario{
-	MADERA,
-	PIEDRA,
-	SAVIA,
-	CARNE,
-	FLECHAS,
-	ANTORCHA
+enum ListaMementos {
+	Memento1,
+	Memento2,
+	Memento3,
+	Memento4,
 }

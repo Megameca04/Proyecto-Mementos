@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://cg8rih3uc1ngw"]
+
+[ext_resource type="Script" uid="uid://dtl0upg21e3aj" path="res://Scripts/Memento.gd" id="1_553ym"]
+[ext_resource type="Texture2D" uid="uid://bibd823f2yo1x" path="res://icon.svg" id="1_vr6v1"]
+[ext_resource type="PackedScene" uid="uid://bssq6mfu78uxj" path="res://Entidades/Luz.tscn" id="2_553ym"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yn1e2"]
+radius = 32.0
+
+[sub_resource type="Animation" id="Animation_553ym"]
+resource_name = "FadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LuzAntorcha:energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yn1e2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LuzAntorcha:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7vmu"]
+_data = {
+&"FadeOut": SubResource("Animation_553ym"),
+&"RESET": SubResource("Animation_yn1e2")
+}
+
+[node name="Memento" type="Area2D" node_paths=PackedStringArray("AnimPlayer") groups=["Memento"]]
+script = ExtResource("1_553ym")
+AnimPlayer = NodePath("AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yn1e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, -9.53674e-07)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("1_vr6v1")
+
+[node name="LuzAntorcha" parent="." instance=ExtResource("2_553ym")]
+size = 200.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t7vmu")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

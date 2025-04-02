@@ -1,3 +1,4 @@
+class_name Luz
 extends PointLight2D
 
 signal lifetime_ended()
@@ -14,9 +15,11 @@ enum LightModes {
 var alive_time: float = 0 :
 	set(v):
 		alive_time = clamp(v,0,life_time)
+		
+		if v == 0:
+			light_mode = LightModes.EPHIMERAL
 		if alive_time >= life_time:
 			lifetime_ended.emit()
-			set_physics_process(false)
 
 @onready var initial_scale : float = size/64
 
@@ -34,7 +37,3 @@ func _physics_process(delta: float) -> void:
 				)
 			)
 		
-		if Input.is_action_just_pressed("ui_accept"):
-			alive_time -= 2
-		if Input.is_action_just_pressed("ui_cancel"):
-			alive_time = 0
