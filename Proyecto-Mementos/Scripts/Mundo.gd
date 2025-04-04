@@ -35,7 +35,7 @@ func restart_game():
 	for i in obtained_mementos:
 		obtained_mementos[i] = false
 	
-	for i	 in get_tree().get_nodes_in_group("Memento"):
+	for i in get_tree().get_nodes_in_group("Memento"):
 		i.restart()
 
 func player_obtain_memento(m : ListaMementos):
@@ -51,7 +51,7 @@ func _on_casa_body_entered(body: Node2D) -> void:
 		print("Fin del juego")
 	else:
 		for i in obtained_mementos:
-			if !i:
+			if obtained_mementos[i] == false:
 				show_dialog.emit(dialogs_mementos[i])
 				break
 		get_tree().paused = true

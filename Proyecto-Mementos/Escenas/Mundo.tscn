@@ -276,7 +276,7 @@ limit_bottom = 1600
 position_smoothing_enabled = true
 
 [node name="Memento" parent="." instance=ExtResource("4_wxw8o")]
-position = Vector2(1839, 901)
+position = Vector2(1760, 896)
 
 [node name="Memento2" parent="." instance=ExtResource("4_wxw8o")]
 position = Vector2(1930, -321)

@@ -25,6 +25,8 @@ var alive_time: float = 0 :
 
 func _ready() -> void:
 	texture_scale = initial_scale
+	if light_mode == LightModes.EPHIMERAL :
+		$CPUParticles2D.emitting = false
 	
 
 func _physics_process(delta: float) -> void:

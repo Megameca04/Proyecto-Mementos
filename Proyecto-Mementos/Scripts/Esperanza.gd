@@ -1,17 +1,15 @@
 extends Area2D
 
-enum ListaMementos {
-	Memento1,
-	Memento2,
-	Memento3,
-	Memento4,
+enum ListaEsperanzas {
+	Rana,
+	Toche,
+	Cigarra,
 }
 
-@export var tipo_memento : ListaMementos
+@export var tipo_memento : ListaEsperanzas
 @export var AnimPlayer : AnimationPlayer
 
-func _ready() -> void:
-	restart()
+
 
 func restart():
 	show()
@@ -26,7 +24,6 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	AnimPlayer.call_deferred("play","FadeOut")
 	$AudioStreamPlayer2D.stop()
-
 
 func _on_audio_stream_player_2d_finished() -> void:
 	$AudioStreamPlayer2D.pitch_scale = randf_range(0.8,1.5)
