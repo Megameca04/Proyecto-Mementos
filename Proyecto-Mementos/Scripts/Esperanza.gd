@@ -6,10 +6,16 @@ enum ListaEsperanzas {
 	Cigarra,
 }
 
-@export var tipo_memento : ListaEsperanzas
+var AudioFiles : Dictionary[ListaEsperanzas,AudioStream] = {
+	ListaEsperanzas.Rana : preload("res://SFX/AudioRana.ogg"),
+	ListaEsperanzas.Toche : preload("res://SFX/AudioToche.ogg"),
+}
+@export var tipo_esperanza : ListaEsperanzas
 @export var AnimPlayer : AnimationPlayer
 
-
+func _ready() -> void:
+	$AudioStreamPlayer2D.stream = AudioFiles[tipo_esperanza]
+	$AudioStreamPlayer2D.play()
 
 func restart():
 	show()
@@ -20,12 +26,12 @@ func restart():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Jugador:
-		body.obtain_memento(tipo_memento)
+		body.heal_player(5)
 	
-	AnimPlayer.call_deferred("play","FadeOut")
+	$RechargeTimer.start()
+	AnimPlayer.call_deferred("play","Stop")
 	$AudioStreamPlayer2D.stop()
 
-func _on_audio_stream_player_2d_finished() -> void:
-	$AudioStreamPlayer2D.pitch_scale = randf_range(0.8,1.5)
-	await get_tree().create_timer(randf()).timeout
+func _on_recharge_timer_timeout() -> void:
+	AnimPlayer.call_deferred("play","Restart")
 	$AudioStreamPlayer2D.play()
