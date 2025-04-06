@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cg8rih3uc1ngw"]
 
 [ext_resource type="Script" uid="uid://dtl0upg21e3aj" path="res://Scripts/Memento.gd" id="1_553ym"]
-[ext_resource type="Texture2D" uid="uid://bibd823f2yo1x" path="res://icon.svg" id="1_vr6v1"]
 [ext_resource type="PackedScene" uid="uid://bssq6mfu78uxj" path="res://Entidades/Luz.tscn" id="2_553ym"]
+[ext_resource type="Texture2D" uid="uid://dqla46k3pr5rp" path="res://Sprites/azadon.png" id="2_yn1e2"]
 [ext_resource type="AudioStream" uid="uid://bk8aparaw6opn" path="res://SFX/SFXCampana.ogg" id="4_yn1e2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yn1e2"]
@@ -92,8 +92,9 @@ shape = SubResource("CircleShape2D_yn1e2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-9.53674e-07, -9.53674e-07)
-scale = Vector2(0.375, 0.375)
-texture = ExtResource("1_vr6v1")
+texture = ExtResource("2_yn1e2")
+hframes = 4
+frame = 3
 
 [node name="LuzAntorcha" parent="." instance=ExtResource("2_553ym")]
 size = 200.0

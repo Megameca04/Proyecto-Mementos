@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://c71w0e3qsyki3"]
+
+[ext_resource type="Texture2D" uid="uid://bvmpu4gan7hy8" path="res://Sprites/IconoCarga.png" id="1_0obt3"]
+[ext_resource type="PackedScene" uid="uid://bssq6mfu78uxj" path="res://Entidades/Luz.tscn" id="2_yorlb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o62p7"]
+atlas = ExtResource("1_0obt3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imimq"]
+atlas = ExtResource("1_0obt3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq8na"]
+atlas = ExtResource("1_0obt3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fywfm"]
+atlas = ExtResource("1_0obt3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ovsdt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o62p7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imimq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq8na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fywfm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+
+[node name="Sprite" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite"]
+scale = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_ovsdt")
+autoplay = "default"
+frame_progress = 0.918611
+
+[node name="LuzAntorcha" parent="Sprite" instance=ExtResource("2_yorlb")]
+size = 200.0

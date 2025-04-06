@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="Proyecto Mementos"
+run/main_scene="uid://bld7sekoea55y"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Variables="*res://Scripts/Variables.gd"
+ScenesManager="*res://Scripts/ScenesManager.gd"
 
 [input]
 

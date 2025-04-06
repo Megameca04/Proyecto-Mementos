@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 signal memento_obtained(memento : Variables.ListaMementos)
 
-@export var speed : float = 300.0
+@export var speed : float = 100.0
 @export var Ligth : Luz
 
 @onready var lifetime_ended_signal : Signal = Ligth.lifetime_ended
@@ -12,15 +12,16 @@ signal memento_obtained(memento : Variables.ListaMementos)
 var direction : Vector2
 
 func _process(_delta: float) -> void:
-	if direction.x < 0:
+	if direction.x != 0:
 		$AnimatedSprite2D.play("Left")
-	elif direction.x > 0:
-		$AnimatedSprite2D.play("Rigth")
+		$AnimatedSprite2D.scale.x = -direction.x
 	
 	if direction.y < 0:
-		$AnimatedSprite2D.play("Up")
+		$AnimatedSprite2D.play("Up") 
+		
 	elif direction.y > 0:
 		$AnimatedSprite2D.play("Down")
+		$AnimatedSprite2D.scale.x = 1
 	
 	if direction == Vector2.ZERO:
 		$AnimatedSprite2D.play("Idle")

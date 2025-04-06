@@ -1,0 +1,127 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8pbvvpwt53a8"]
+
+[ext_resource type="FontFile" uid="uid://cq2pbvu813ftv" path="res://Recursos/Pixellari.ttf" id="1_gkvhh"]
+[ext_resource type="Script" uid="uid://ljr2rl06weio" path="res://Scripts/Creditos.gd" id="2_mkmgh"]
+[ext_resource type="Texture2D" uid="uid://d4n2oi77s0bx0" path="res://Sprites/Madera.png" id="4_dkrkv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7cfe"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.996078, 0.905882, 0.380392, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnieh"]
+bg_color = Color(0.45098, 0.243137, 0.223529, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.968627, 0.462745, 0.133333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1r70g"]
+bg_color = Color(0.45098, 0.243137, 0.223529, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.996078, 0.682353, 0.203922, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1sq8q"]
+bg_color = Color(0.243137, 0.152941, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.968627, 0.462745, 0.133333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_wnieh"]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_gkvhh")
+Button/styles/focus = SubResource("StyleBoxFlat_g7cfe")
+Button/styles/hover = SubResource("StyleBoxFlat_wnieh")
+Button/styles/normal = SubResource("StyleBoxFlat_1r70g")
+Button/styles/pressed = SubResource("StyleBoxFlat_1sq8q")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wnieh")
+script = ExtResource("2_mkmgh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.722
+anchor_top = 0.444
+anchor_right = 0.944
+anchor_bottom = 0.87
+offset_left = -751.744
+offset_top = -207.712
+offset_right = -751.488
+offset_bottom = -47.76
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 450)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_gkvhh")
+bbcode_enabled = true
+text = "[font_size={32}]Desarrollado por:
+Megameca04 (Programación, S	ound Desing)
+Dany1302 (Arte)
+
+Audios de animales extraidos de:
+
+https://colombia.inaturalist.org/observations/247418496
+https://colombia.inaturalist.org/observations/230070558
+https://colombia.inaturalist.org/observations/174363087"
+
+[node name="VolverButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+text = "Volver"
+
+[node name="Fondo" type="Parallax2D" parent="."]
+z_index = -1
+scroll_offset = Vector2(704, 8)
+repeat_size = Vector2(160, 320)
+repeat_times = 10
+
+[node name="Madera" type="Sprite2D" parent="Fondo"]
+position = Vector2(560, 80)
+scale = Vector2(10, 10)
+texture = ExtResource("4_dkrkv")
+
+[connection signal="pressed" from="VBoxContainer/VolverButton" to="." method="_on_volver_button_pressed"]

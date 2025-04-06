@@ -11,6 +11,7 @@ enum ListaMementos {
 @export var AnimPlayer : AnimationPlayer
 
 func _ready() -> void:
+	$Sprite2D.frame = tipo_memento
 	restart()
 
 func restart():
@@ -18,7 +19,6 @@ func restart():
 	$LuzAntorcha.energy = 1.0
 	$CollisionShape2D.disabled = false
 	$AudioStreamPlayer2D.play()
-
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Jugador:

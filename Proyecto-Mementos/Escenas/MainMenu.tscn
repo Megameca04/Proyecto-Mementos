@@ -1,0 +1,159 @@
+[gd_scene load_steps=10 format=3 uid="uid://bld7sekoea55y"]
+
+[ext_resource type="FontFile" uid="uid://cq2pbvu813ftv" path="res://Recursos/Pixellari.ttf" id="1_jg0v5"]
+[ext_resource type="Script" uid="uid://cacqe0d3r8na6" path="res://Scripts/MainMenu.gd" id="2_anpoc"]
+[ext_resource type="Texture2D" uid="uid://1g2nad85k0c7" path="res://Sprites/Titulo.png" id="2_ij1hm"]
+[ext_resource type="Texture2D" uid="uid://d4n2oi77s0bx0" path="res://Sprites/Madera.png" id="4_anpoc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7cfe"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.996078, 0.905882, 0.380392, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnieh"]
+bg_color = Color(0.45098, 0.243137, 0.223529, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.968627, 0.462745, 0.133333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1r70g"]
+bg_color = Color(0.45098, 0.243137, 0.223529, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.996078, 0.682353, 0.203922, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1sq8q"]
+bg_color = Color(0.243137, 0.152941, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.968627, 0.462745, 0.133333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_wnieh"]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_jg0v5")
+Button/styles/focus = SubResource("StyleBoxFlat_g7cfe")
+Button/styles/hover = SubResource("StyleBoxFlat_wnieh")
+Button/styles/normal = SubResource("StyleBoxFlat_1r70g")
+Button/styles/pressed = SubResource("StyleBoxFlat_1sq8q")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wnieh")
+script = ExtResource("2_anpoc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.069
+anchor_top = -0.062
+anchor_right = 0.602
+anchor_bottom = 0.444
+offset_left = 0.511993
+offset_top = 0.176003
+offset_right = 0.495911
+offset_bottom = 0.287964
+texture = ExtResource("2_ij1hm")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.722
+anchor_top = 0.444
+anchor_right = 0.944
+anchor_bottom = 0.87
+offset_left = 0.25592
+offset_top = 8.28796
+offset_right = 0.511963
+offset_bottom = 0.239929
+alignment = 1
+
+[node name="JugarButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Creditos")
+focus_next = NodePath("../Creditos")
+focus_previous = NodePath("../SalirButton")
+text = "Jugar"
+
+[node name="Creditos" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+focus_neighbor_top = NodePath("../JugarButton")
+focus_neighbor_bottom = NodePath("../SalirButton")
+focus_next = NodePath("../SalirButton")
+focus_previous = NodePath("../JugarButton")
+text = "Creditos"
+
+[node name="SalirButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Creditos")
+focus_next = NodePath("../JugarButton")
+focus_previous = NodePath("../Creditos")
+text = "Salir"
+
+[node name="Fondo" type="Parallax2D" parent="."]
+z_index = -1
+scroll_offset = Vector2(704, 8)
+repeat_size = Vector2(160, 320)
+repeat_times = 10
+
+[node name="Madera" type="Sprite2D" parent="Fondo"]
+position = Vector2(560, 80)
+scale = Vector2(10, 10)
+texture = ExtResource("4_anpoc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 528.0
+offset_right = 376.0
+offset_bottom = 560.0
+theme_override_fonts/normal_font = ExtResource("1_jg0v5")
+text = "Moverse: WASD
+Presiona espacio para seleccionar una opción."
+
+[connection signal="pressed" from="VBoxContainer/JugarButton" to="." method="_on_jugar_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Creditos" to="." method="_on_creditos_pressed"]
+[connection signal="pressed" from="VBoxContainer/SalirButton" to="." method="_on_salir_button_pressed"]

@@ -1,20 +1,21 @@
 extends Area2D
 
-enum ListaEsperanzas {
-	Rana,
-	Toche,
-	Cigarra,
-}
-
-var AudioFiles : Dictionary[ListaEsperanzas,AudioStream] = {
-	ListaEsperanzas.Rana : preload("res://SFX/AudioRana.ogg"),
-	ListaEsperanzas.Toche : preload("res://SFX/AudioToche.ogg"),
-}
-@export var tipo_esperanza : ListaEsperanzas
+@export var tipo_esperanza : Variables.ListaEsperanzas
 @export var AnimPlayer : AnimationPlayer
 
 func _ready() -> void:
-	$AudioStreamPlayer2D.stream = AudioFiles[tipo_esperanza]
+	$AudioStreamPlayer2D.stream = Variables.AudioFiles[tipo_esperanza]
+	
+	var tipe := randf()
+	
+	match tipo_esperanza:
+		Variables.ListaEsperanzas.Rana:
+			$Sprite2D.frame = 18 if tipe <= 0.5 else 19
+		Variables.ListaEsperanzas.Toche:
+			$Sprite2D.frame = 36 if tipe <= 0.5 else 37
+		Variables.ListaEsperanzas.Cigarra:
+			$Sprite2D.frame = 16 if tipe <= 0.5 else 17
+	
 	$AudioStreamPlayer2D.play()
 
 func restart():
